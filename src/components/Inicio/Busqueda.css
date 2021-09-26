@@ -1,0 +1,35 @@
+
+.busqueda-container{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ede9e77c;
+}
+
+.busqueda-all{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-fondo {
+    object-fit: cover;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    z-index: -1;
+}
+
+.button-search{
+    background-color: #EDE9E7;
+    border: none;
+    width: 140px;
+    font-weight: 600;
+}
+
+.button-search:hover{
+    border: 2px solid;
+}
+
