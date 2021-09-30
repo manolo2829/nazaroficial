@@ -8,6 +8,7 @@ import {
 import Nosotros from "./components/Nosotros";
 import Menu from "./components/Menu";
 import LogIn from "./components/LogIn";
+import Admin from "./components/Admin";
 
 
 const App = () =>{
@@ -20,8 +21,9 @@ const App = () =>{
             <Route path='/' exact component={Inicio}></Route>
             <Route path='/nosotros' component={Nosotros}></Route>
             <Route path='/login' component={LogIn}></Route>
+            <Route path='/admin' component={Admin}></Route>
           </Switch>
-        </main>
+        </main> 
       </Router>
     </div>
   )

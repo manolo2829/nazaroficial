@@ -11,6 +11,8 @@ const Gallery = () => {
     const Filtereditem = () => {
         if( search.length === 0)
             return ListaObjetos.slice(paginaActual, paginaActual+5)
+
+        
         
         const filtered = ListaObjetos.filter( item => item.titulo.includes( search ))
         return filtered.slice( paginaActual, paginaActual + 5)     
@@ -80,4 +82,5 @@ const Gallery = () => {
     )
 }   
 
-export default Gallery
+export default Gallery;
+

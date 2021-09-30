@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './css/Menu.css'
 import Logo from './img/logo.png'
+import { fbAuth } from '../configfire';
 
 function Menu() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const [usuario, setUsuario] = useState('');
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -25,6 +27,15 @@ function Menu() {
       setDropdown(false);
     }
   };
+
+  useEffect( () => {
+    fbAuth.onAuthStateChanged( (user) =>{
+        if (user) {
+            setUsuario(user.email)
+            console.log(user.email)
+        }
+    })
+  }, [])
 
   return (
     <>
@@ -53,13 +64,27 @@ function Menu() {
             </Link>
           </li>
           <li className='nav-item'>
-            <Link
-              to='/login'
-              className='nav-links'
-              onClick={closeMobileMenu}
-            >
-              SingIn
-            </Link>
+            {
+              usuario === '123@123.com' ?
+              (
+                <Link
+                  to='/admin'
+                  className='nav-links'
+                  onClick={closeMobileMenu}
+                >
+                  Admin
+                </Link>
+              ):(
+                <Link
+                  to='/login'
+                  className='nav-links'
+                  onClick={closeMobileMenu}
+                >
+                  SingIn
+                </Link>
+              )
+            }
+            
           </li>
           
         </ul>

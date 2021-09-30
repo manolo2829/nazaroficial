@@ -7,7 +7,6 @@ const Inicio = () => {
     return(
         <div>
             <Busqueda></Busqueda>
-            <Galley></Galley>
         </div>
     )
 }

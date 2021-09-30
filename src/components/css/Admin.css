@@ -1,0 +1,28 @@
+
+.admin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EDE9E7;
+}
+
+.admin-form-group{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+    margin-top: 100px;
+    margin-bottom: 15px;
+}
+
+.admin-ul-icons{
+    width: 100%;
+    margin: 15px 0;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 20px;
+    list-style: none;
+}
+
+.admin-ul-icons li{
+    width: 100%;
+}
