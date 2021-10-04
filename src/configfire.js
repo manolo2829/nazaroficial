@@ -2,6 +2,8 @@ import firebase from 'firebase';
 import 'firebase/storage'
 import 'firebase/firestore'
 import 'firebase/auth'
+import { ref, database } from "firebase/database";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAztYNxBqM4enNWniX8iAnS_xr3hdUOcWI",
@@ -13,9 +15,10 @@ const firebaseConfig = {
   measurementId: "G-W5NMYV6QGJ"
 };
   // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const fbStorage = firebase.storage()
-const fbStore = firebase.firestore()
-const fbAuth = firebase.auth()
+const Firebase = firebase.initializeApp(firebaseConfig);
+const fbStorage = Firebase.storage()
+const fbStore = Firebase.firestore()
+const fbAuth = Firebase.auth()
+const fbDataBase = Firebase.database().ref()
 
-export {fbStorage, fbStore, fbAuth}
+export {fbStorage, fbStore, fbAuth, fbDataBase }
