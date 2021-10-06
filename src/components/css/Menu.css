@@ -54,9 +54,11 @@ ul{
   transition: all 0.2s ease-out;
 }
 
-.nav-links:hover{
-  color: #fff;
+.nav-item:hover > a{
+  color: #fff!important;
 }
+
+
 
 .fa-bars {
   color: #fff;

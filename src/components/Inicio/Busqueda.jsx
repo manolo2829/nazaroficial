@@ -4,6 +4,7 @@ import './Busqueda.css'
 import fondo from '../img/inicio.jpg'
 import { Tipo } from '../hooks/Filtro'
 import { Condicion } from '../hooks/Filtro'
+import { Link } from 'react-router-dom'
 
 const Busqueda = () => {
 
@@ -55,7 +56,7 @@ const Busqueda = () => {
         
     }, [])
     return (
-        <div>
+        <div> 
             <div className='busqueda-container'>
                                     
                 <div className='busqueda-form'>
@@ -123,17 +124,18 @@ const Busqueda = () => {
                                     return val
                                 }
                             }).map( item => 
-                                <div className="card" key={item.id}>
-                                    <img src={item.arrayFiles[0]} className="card-img-top" alt="..." style={{ height: '60%' }}/>
-                                    <div className="card-body">
-                                        <h5 className="card-title">{item.localidad}, {item.provincia}</h5>
-                                        <p className="card-text">{item.domicilio}, {item.zona}</p>
-                                    </div>
-                                    <div className="card-footer">
-                                        <small className="card-price">$ARS {item.precioPesos} --- US$ {item.precioUSD}</small>
-                                    </div>
-                                </div>    
-                                
+                                <Link className='busqueda-link' to={`/objeto/${item.id}`}>
+                                    <div className="card" key={item.id}>
+                                        <img src={item.arrayFiles[0]} className="card-img-top" alt="..." style={{ height: '60%' }}/>
+                                        <div className="card-body">
+                                            <h5 className="card-title">{item.localidad}, {item.provincia}</h5>
+                                            <p className="card-text">{item.domicilio}, {item.zona}</p>
+                                        </div>
+                                        <div className="card-footer">
+                                            <small className="card-price">$ARS {item.precioPesos} --- US$ {item.precioUSD}</small>
+                                        </div>
+                                    </div>    
+                                </Link>
                             )
                         }
                         

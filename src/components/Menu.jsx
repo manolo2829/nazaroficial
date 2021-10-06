@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import './css/Menu.css'
 import Logo from './img/logo.png'
 import { fbAuth } from '../configfire';
+import { useHistory } from 'react-router';
 
 function Menu() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const [usuario, setUsuario] = useState('');
+  const [usuario, setUsuario] = useState(null);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const history = useHistory()
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -27,6 +29,12 @@ function Menu() {
       setDropdown(false);
     }
   };
+
+  const CerrarSesion = () => {
+    fbAuth.signOut()
+    setUsuario(null)
+    history.push('/')
+  }
 
   useEffect( () => {
     fbAuth.onAuthStateChanged( (user) =>{
@@ -86,6 +94,27 @@ function Menu() {
             }
             
           </li>
+          {
+            usuario === null ?(
+              <span style={{ display: 'none'}}></span>
+            ):(
+              <li
+                className='nav-item'
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+              >
+                <Link
+                  to='/'
+                  className='nav-links'
+                  onClick={closeMobileMenu, CerrarSesion}
+                >
+                  Cerrar Sesion
+                </Link>
+              </li>
+            )
+          }
+
+          
           
         </ul>
       </nav>

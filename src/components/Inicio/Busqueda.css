@@ -21,8 +21,19 @@
     grid-column: 2/4;
 }
 
+.busqueda-link{
+    text-decoration: none;
+    color: #000;
+    transition: 0.4s;
+}
 
+.busqueda-link:hover{
+    filter: brightness(0.4);
+    cursor: pointer;
+    color: #000;
+    transform: scale(1.1);
 
+}
 
 .img-fondo {
     object-fit: cover;
@@ -51,8 +62,7 @@
 }
 
 .card:hover{
-    filter: brightness(0.4);
-    cursor: pointer;
+    
 }
 
 .card-price{
