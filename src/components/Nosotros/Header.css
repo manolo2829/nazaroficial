@@ -21,7 +21,11 @@
     color: white;
     font-size: 100px;
 }
-  
+
+.header-detalle{
+    color: rgb(189, 0, 0);
+    font-weight: 400;
+}
 .cover-container > p {
     margin-top: 8px;
     color: white;

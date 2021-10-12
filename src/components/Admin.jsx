@@ -4,11 +4,16 @@ import { fbStorage } from '../configfire';
 import { fbStore } from '../configfire';
 import Mapa from './Admin/Mapa';
 import { useHistory } from 'react-router'
+import { fbAuth } from '../configfire';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
 
 
 
 
 const Admin = () => {
+
+    const [usuario, setUsuario] = useState(null);
 
     const [pais, setPais] = useState('');
     const [provincia, setProvincia] = useState('');
@@ -32,14 +37,26 @@ const Admin = () => {
     const [magnitudes, setMagnitudes] = useState([]);
     const [arrayFiles, setArrayFiles] = useState([]);
     const [image, setImage] = useState('');
+    const [imagenEliminada, setImagenEliminada] = useState('');
+    const [estado, setEstado] = useState('');
+    
 
     const history = useHistory()
     const refInputFile = useRef(null)
+
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
 
     const selectImage = () => {
         refInputFile.current.click()
     }
 
+    const EliminarImagen = (e) => {
+        const nuevoArray = arrayFiles.filter(function(item) {
+            return item !== e
+        })
+        setArrayFiles(nuevoArray)
+    }
 
     const detectFile = (e) => {
         for(let i = 0; i < e.target.files.length; i++){
@@ -63,6 +80,69 @@ const Admin = () => {
         }
     }
 
+    useEffect( () => {
+        const ObtenerAccion = async() => {
+            const url = history.location.pathname
+            url === '/admin' ? (
+                setEstado('añadiendo')
+            ):(
+                ObtenerDatos()
+            )
+        }
+        
+        const ObtenerDatos = async() =>{
+            try{
+                setEstado('modificando')
+                const id = history.location.pathname.replace('/admin/', '')
+                const res = await fbStore.collection('Mendoza').doc(id).get()
+                const {tipo, domicilio , precioUSD, zona, localidad, precioPesos, provincia, tasacionPesos, tasacionUSD, descripcion, condicion, barrio, pais, arrayFiles} = res.data()
+
+                setTipo(tipo)
+                setDomicilio(domicilio)
+                setPrecioUS(precioUSD)
+                setZona(zona)
+                setLocalidad(localidad)
+                setPrecioARS(precioPesos)
+                setProvincia(provincia)
+                setTasacionARS(tasacionPesos)
+                setTasacionUS(tasacionUSD)
+                setDescripcion(descripcion)
+                setCondicion(condicion)
+                setBarrio(barrio)
+                setPais(pais)
+                setArrayFiles(arrayFiles)
+
+                fbAuth.onAuthStateChanged( (user) =>{
+                    if (user) {
+                        setUsuario(user.email)
+                        console.log(user.email)
+                    }
+                })
+
+                
+
+            }catch(e){
+                console.log(e)
+            }
+        } 
+        ObtenerAccion()     
+           
+    }, [])
+
+    useEffect( () => {
+        setDescripcion(descripcion.replace('\n', '|'))
+    },[descripcion])
+
+    const Eliminar = async() =>{
+        try{
+            const id = history.location.pathname.replace('/admin/', '')
+            const res = await fbStore.collection('Mendoza').doc(id).delete();
+            history.push('/')
+        }catch(e){
+            console.log(e)
+        }
+        
+    }
 
     const uploadProperty = async(e) => {
         e.preventDefault()
@@ -89,12 +169,17 @@ const Admin = () => {
                 area: area,
                 calefaccion: calefaccion,
                 mascota: mascota,
+                titulo: `${domicilio}, ${zona}, ${localidad}`
 
             })
         }catch(e){
             console.log(e)
         }
-
+        estado === 'añadiendo' ? (
+            console.log('Inmueble añadido')
+        ):(
+            Eliminar() 
+        )
         history.push('/')
     }
   
@@ -107,74 +192,86 @@ const Admin = () => {
                 <div className='admin-form-group'>
                     <div className="form-group">
                         <label htmlFor="pais">Pais</label>
-                        <input type="text" className="form-control" id="pais" required
+                        <input type="text" className="form-control" id="pais"
                             onChange={ (e) => {setPais(e.target.value)}}
+                            value={pais}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="provincia">Provincia</label>
-                        <input type="text" className="form-control" id="provincia" required
+                        <input type="text" className="form-control" id="provincia" 
                             onChange={ (e) => {setProvincia(e.target.value)}}
+                            value={provincia}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="localidad">Localidad</label>
-                        <input type="text" className="form-control" id="localidad" required
+                        <input type="text" className="form-control" id="localidad" 
                             onChange={ (e) => {setLocalidad(e.target.value)}}
+                            value={localidad}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="zona">Zona</label>
                         <input type="text" className="form-control" id="zona" 
                             onChange={ (e) => {setZona(e.target.value)}}
+                            value={zona}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="barrio">Barrio</label>
                         <input type="text" className="form-control" id="barrio" 
                             onChange={ (e) => {setBarrio(e.target.value)}}
+                            value={barrio}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="domicilio">Domicilio</label>
-                        <input type="text" className="form-control" id="domicilio" required
+                        <input type="text" className="form-control" id="domicilio" 
                             onChange={ (e) => {setDomicilio(e.target.value)}}
+                            value={domicilio}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="tipo">Tipo</label>
-                        <input type="text" className="form-control" id="tipo" required
+                        <input type="text" className="form-control" id="tipo" 
                             onChange={ (e) => {setTipo(e.target.value)}}
+                            value={tipo}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="condicion">Condicion</label>
-                        <input type="text" className="form-control" id="condicion" required
+                        <input type="text" className="form-control" id="condicion" 
                             onChange={ (e) => {setCondicion(e.target.value)}}
+                            value={condicion}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="precioars">Precio(ARS$)</label>
                         <input type="text" className="form-control" id="precioars" 
                             onChange={ (e) => {setPrecioARS(e.target.value)}}
+                            value={precioARS}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="preciousd">Precio(US$)</label>
                         <input type="text" className="form-control" id="preciousd" 
                             onChange={ (e) => {setPrecioUS(e.target.value)}}
+                            value={precioUS}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="tasacionars">Tasacion(ARS$)</label>
                         <input type="text" className="form-control" id="tasacionars" 
                             onChange={ (e) => {setTasacionARS(e.target.value)}}
+                            value={tasacionARS}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="tasacionus">Tasacion(US$)</label>
                         <input type="text" className="form-control" id="tasacionus" 
                             onChange={ (e) => {setTasacionUS(e.target.value)}}
+                            value={tasacionUS}
                         />
                     </div>
                 </div>
@@ -192,6 +289,7 @@ const Admin = () => {
                                     <span className="input-group-text" id="basic-addon1"><i className="fas fa-toilet"></i></span>
                                     <input type="text" className="form-control" placeholder="Baños" aria-label="Username" aria-describedby="basic-addon1"
                                         onChange={ (e) => {setBaños(e.target.value)}}
+                                        value={baños}
                                     />
                                 </div>
                             </li>
@@ -200,6 +298,7 @@ const Admin = () => {
                                     <span className="input-group-text" id="basic-addon1"><i className="fas fa-bed"></i></span>
                                     <input type="text" className="form-control" placeholder="Habitaciones" aria-label="Username" aria-describedby="basic-addon1"
                                         onChange={ (e) => {setHabitaciones(e.target.value)}}
+                                        value={habitaciones}
                                     />
                                 </div>
                             </li>
@@ -208,6 +307,7 @@ const Admin = () => {
                                     <span className="input-group-text" id="basic-addon1"><i className="fas fa-warehouse"></i></span>
                                     <input type="text" className="form-control" placeholder="Cochera" aria-label="Username" aria-describedby="basic-addon1"
                                         onChange={ (e) => {setCochera(e.target.value)}}
+                                        value={cochera}
                                     />
                                 </div>
                             </li>
@@ -216,6 +316,7 @@ const Admin = () => {
                                     <span className="input-group-text" id="basic-addon1">m2</span>
                                     <input type="text" className="form-control" placeholder="Area" aria-label="Username" aria-describedby="basic-addon1"
                                         onChange={ (e) => {setArea(e.target.value)}}
+                                        value={area}
                                     />
                                 </div>
                             </li>
@@ -224,6 +325,7 @@ const Admin = () => {
                                     <span className="input-group-text" id="basic-addon1"><i className="fas fa-thermometer-full"></i></span>
                                     <input type="text" className="form-control" placeholder="Calefaccion" aria-label="Username" aria-describedby="basic-addon1"
                                         onChange={ (e) => {setCalefaccion(e.target.value)}}
+                                        value={calefaccion}
                                     />
                                 </div>
                             </li>
@@ -232,6 +334,7 @@ const Admin = () => {
                                     <span className="input-group-text" id="basic-addon1"><i className="fas fa-paw"></i></span>
                                     <input type="text" className="form-control" placeholder="Mascotas" aria-label="Username" aria-describedby="basic-addon1"
                                         onChange={ (e) => {setMascota(e.target.value)}}
+                                        value={mascota}
                                     />
                                 </div>
                             </li>
@@ -261,13 +364,21 @@ const Admin = () => {
                     <div className='admin-arrayFiles'>
                             {
                                 arrayFiles.map( item => 
-                                    <img src={item} alt="" key={item} />    
+                                    <div key={item} className='admin-img'>
+                                        <div>
+                                            <p>Eliminar</p>
+                                        </div>
+                                        <img src={item} alt="" className='desvanecer' 
+                                            onClick={(e) => {EliminarImagen(e.target.src)}} 
+                                        />
+                                    </div>          
                                 )
                             }
                     </div>
                     <div className='admin-submitC'>
-                        <input type="submit" className='admin-submit' />
+                        <input type="submit" className='admin-submit' onClick={uploadProperty} />
                     </div>
+                   
                 </div>
                 
             </form>

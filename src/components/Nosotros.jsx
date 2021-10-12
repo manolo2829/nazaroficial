@@ -1,6 +1,4 @@
 import React from "react";
-import Carousel from './Carousel'
-import './css/Nosotros.css'
 import Header from "./Nosotros/Header";
 import About from "./Nosotros/About";
 import Info from "./Nosotros/Info";

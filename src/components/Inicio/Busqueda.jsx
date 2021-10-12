@@ -124,8 +124,8 @@ const Busqueda = () => {
                                     return val
                                 }
                             }).map( item => 
-                                <Link className='busqueda-link' to={`/objeto/${item.id}`}>
-                                    <div className="card" key={item.id}>
+                                <Link className='busqueda-link' to={`/objeto/${item.id}`} key={item.id}>
+                                    <div className="card" >
                                         <img src={item.arrayFiles[0]} className="card-img-top" alt="..." style={{ height: '60%' }}/>
                                         <div className="card-body">
                                             <h5 className="card-title">{item.localidad}, {item.provincia}</h5>

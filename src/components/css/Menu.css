@@ -44,13 +44,13 @@ ul{
 }
 
 .nav-links {
-  color: rgb(141, 4, 4);
+  color: rgb(189, 0, 0);
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
 
 .nav-item:hover {
-  background-color:rgb(141, 4, 4);
+  background-color:rgb(189, 0, 0);
   transition: all 0.2s ease-out;
 }
 
@@ -106,7 +106,7 @@ ul{
   }
 
   .nav-links:hover {
-    background-color: rgb(141, 4, 4);
+    background-color: rgb(189, 0, 0);
     border-radius: 0;
   }
 
@@ -139,7 +139,6 @@ ul{
     margin: 2rem auto;
     border-radius: 4px;
     width: 80%;
-    background: #1888ff;
     text-decoration: none;
     color: #fff;
     font-size: 1.5rem;
@@ -147,7 +146,6 @@ ul{
 
   .nav-links-mobile:hover {
     background: #fff;
-    color: #1888ff;
     transition: 250ms;
   }
 
