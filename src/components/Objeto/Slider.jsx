@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { fbStore } from "../../configfire";
 import { useParams } from "react-router";
+import Logo from '../img/logona.png'
 
 import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
@@ -54,7 +55,7 @@ const Slider = () => {
         <Swiper style={{'--swiper-navigation-color': '#fff','--swiper-pagination-color': '#fff'}} loop={true} spaceBetween={10} navigation={true} thumbs={{ swiper: thumbsSwiper }} className="mySwiper2">
             {
                 arrayFiles.map( item => 
-                    <SwiperSlide key={arrayFiles.indexOf(item)}><img src={item} alt="" /></SwiperSlide>
+                    <SwiperSlide key={arrayFiles.indexOf(item)}><img src={item} alt="" className='slider-img-slide' /></SwiperSlide>
                 )
             }
             

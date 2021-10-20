@@ -5,6 +5,9 @@ import fondo from '../img/inicio.jpg'
 import { Tipo } from '../hooks/Filtro'
 import { Condicion } from '../hooks/Filtro'
 import { Link } from 'react-router-dom'
+import Logo from '../img/loguitosf.png'
+import Insignia from '../img/logona.png'
+
 
 const Busqueda = () => {
 
@@ -16,6 +19,8 @@ const Busqueda = () => {
     const [pais, setPais] = useState('');
     const [provincia, setProvincia] = useState('');
     const [localidad, setLocalidad] = useState('');
+    const [precioDesde, setPrecioDesde] = useState(0);
+    const [precioHasta, setPrecioHasta] = useState(0);
 
     const Filtereditem = () => {
 
@@ -50,16 +55,24 @@ const Busqueda = () => {
           const { docs } = await fbStore.collection('Mendoza').get()
           const nuevoArray = docs.map( item => ({id:item.id, ...item.data()}))
           setListaObjetos(nuevoArray)
-            
+             
         }     
         objetos()
         
     }, [])
-    return (
+    return ( 
         <div> 
             <div className='busqueda-container'>
-                                    
+
+                <div className='busqueda-header'>
+                    <h1>NAZAR <b className='header-detalle'>propiedades</b></h1>
+                    <p>Inmobiliaria <b className='header-detalle'>|</b> Mendoza <b className='header-detalle'>|</b> Liliana Nazar <b className='header-detalle'>|</b> Argentina </p>
+                </div>
+                                      
                 <div className='busqueda-form'>
+
+
+                     
                     <input type="text" aria-label="First name" className="form-control"  placeholder='Tipo' list='lista-tipo'
                             onChange={ (e) => {setTipo(e.target.value)}}
                     />
@@ -82,9 +95,7 @@ const Busqueda = () => {
                             }
                     </datalist>
 
-                    <input type="text" aria-label="Last name" className="form-control"  placeholder='Pais'
-                            onChange={(e) => {setPais(e.target.value)}}
-                    />
+
                     <input type="text" aria-label="Last name" className="form-control" placeholder='Provincia'
                             onChange={(e) => {setProvincia(e.target.value)}}
                     />  
@@ -95,17 +106,18 @@ const Busqueda = () => {
                             
                             onChange={ (e) => {setSearch(e.target.value); setPaginaActual(0)} }
                     />
-
-                    
-
                 </div>
 
                 <img src={fondo} alt="" className='img-fondo' />
             </div>
             <div style={{ background: '#EDE9E7'}} className='cards-container'>
-                <h4 className='text-center p-5'> Inmuebles </h4>
+                <div className='cards-header'>
+                    <img src={Logo} alt="" />
+                    <p>Inmuebles</p>
+                </div>
+                
                 <div className='container'>
-                    <div className="card-group-grid">
+                    <div className="card-group-grid"> 
                         
                         {
                             listaObjetos.filter( item => item.tipo.includes ( tipo ))
@@ -126,6 +138,7 @@ const Busqueda = () => {
                             }).map( item => 
                                 <Link className='busqueda-link' to={`/objeto/${item.id}`} key={item.id}>
                                     <div className="card" >
+                                        <img src={Insignia} className='card-img-logo' alt="" />
                                         <img src={item.arrayFiles[0]} className="card-img-top" alt="..." style={{ height: '60%' }}/>
                                         <div className="card-body">
                                             <h5 className="card-title">{item.localidad}, {item.provincia}</h5>

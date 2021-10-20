@@ -1,5 +1,6 @@
 .navbar {
-  background: linear-gradient(180deg, rgb(255, 255, 255) 0%, #EDE9E7 100%);
+  /*background: linear-gradient(180deg, rgb(255, 255, 255) 0%, #EDE9E7 100%);*/
+  background-color: #fff;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -61,7 +62,7 @@ ul{
 
 
 .fa-bars {
-  color: #fff;
+  color: rgb(0, 0, 0);
 }
 
 .nav-links-mobile {
@@ -91,7 +92,8 @@ ul{
   }
 
   .nav-menu.active {
-    background: #EDE9E7;
+    margin: 0!important;
+    background: #fff;
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
@@ -128,9 +130,11 @@ ul{
   }
 
   .fa-times {
-    color: #fff;
+    color: #000;
     font-size: 2rem;
   }
+
+  
 
   .nav-links-mobile {
     display: block;

@@ -17,6 +17,10 @@
     margin-bottom: 15px;
 }
 
+.admin-form-group div:first-child{
+    margin-top: 1rem;
+}
+
 .admin-ul-icons{
     width: 100%;
     margin: 15px 0;
@@ -77,12 +81,12 @@
 }
 
 .admin-submit{
-    margin-top: 40px;
-    color: #fff;
-    padding: 5px 15px;
-    background-color: rgb(189, 1, 1);
-    border: none;
-    transition: 1s;
+    margin-top: 40px!important;
+    color: #fff!important;
+    padding: 5px 15px!important;
+    background-color: rgb(189, 1, 1)!important;
+    border: none!important;
+    transition: 1s!important;
 }
 
 .admin-submitC{
@@ -94,7 +98,7 @@
 
 .admin-submit:hover{
     padding: 10px 20px;
-    background-color: rgb(80, 0, 0);
+    background-color: rgb(80, 0, 0)!important;
 }
 
 .admin-img {
@@ -155,7 +159,7 @@
     .admin-form-group{
         grid-template-columns: 1fr ;
     }
-
+ 
     .admin-ul-icons{
         grid-template-columns: repeat(2,1fr);
     }

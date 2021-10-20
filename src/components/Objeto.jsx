@@ -7,6 +7,7 @@ import Slider from './Objeto/Slider'
 import user from './img/nazarvende.jfif'
 import Descripcion from './Objeto/Descripcion'
 import { useHistory } from 'react-router'
+import logo from './img/logocompleto.jfif'
 
 const Objeto = () => {
 
@@ -57,7 +58,7 @@ const Objeto = () => {
         const ticketUnico = async() =>{
             try{
                 const res = await fbStore.collection('Mendoza').doc(id).get()
-                const {tipo, domicilio , precioUSD, zona, localidad, precioPesos, provincia, tasacionPesos, tasacionUSD, descripcion, condicion, barrio, titulo, area, baños, cochera, habitaciones, calefaccion, mascota} = res.data()
+                const {tipo, domicilio , precioUSD, zona, localidad, precioPesos, provincia, tasacionPesos, tasacionUSD, descripcion, condicion, barrio, titulo, area, baños, cochera, habitaciones, calefaccion, mascota, pais} = res.data()
 
                 setTipo(tipo)
                 setDomicilio(domicilio)
@@ -78,6 +79,7 @@ const Objeto = () => {
                 setHabitaciones(habitaciones)
                 setMascota(mascota)
                 setCalefaccion(calefaccion)
+                setPais(pais)
 
                 fbAuth.onAuthStateChanged( (user) =>{
                     if (user) {
@@ -97,11 +99,17 @@ const Objeto = () => {
     return (
         <div className='objeto'>
             <div className='objeto-header'>
-                <h3>{titulo}</h3>
+                <h3>{barrio !== 'No' ? `Barrio ${barrio},` : ''} {barrio !== 'No' ? domicilio !== '' ? `${domicilio},` : '' : `Calle ${domicilio},`} {localidad !== '' ? `${localidad}` : ''} </h3>
                 <div>
                     <p><b>Tipo:</b> {tipo}</p>
                     <p><b>Condicion:</b> {condicion}</p>
+                    <p><b>Pais:</b> {pais}</p>
+                    <p><b>Provincia:</b> {provincia}</p>
+                    <p><b>Localidad:</b> {localidad}</p>
+                    <p><b>Zona:</b> {zona}</p>
                     <p><b>Barrio:</b> {barrio}</p>
+                    <p><b>Domicilio:</b> {domicilio}</p>
+
                 </div>
             </div>
             <div className='objeto-main'>
@@ -156,7 +164,28 @@ const Objeto = () => {
                     </div>
                 </div>
                <div className='objeto-user'>
-                   <img src={user} alt="" />
+                   <img src={logo} alt="" />
+                   <div className='objeto-user-info'>
+                       <div className='objeto-user-data'>
+                           <div>
+                               <p>Matriculada:</p>
+                               <p>Liliana Nazar</p>
+                           </div>
+                           <div>
+                               <p>Oficina:</p>
+                               <p>Turin 2829</p>
+                           </div>
+                           <div>
+                               <p>Propiedades:</p>
+                               <p>+300</p>
+                           </div>
+                       </div>
+                       <div className='objeto-user-cont'>
+                           <p>Contactenos por esta propiedad</p>
+                           <i className="fas fa-arrow-down"></i>
+                       </div>
+                       <p className='objeto-user-number'><i className="fab fa-whatsapp"></i> 2614176778</p>
+                   </div>
                    <ul>
                        <li><a href="https://www.instagram.com/nazar_propiedades/"><i className="fab fa-instagram"></i></a></li>
                        <li><a href="#!"><i className="far fa-envelope"></i></a></li>

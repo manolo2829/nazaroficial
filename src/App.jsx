@@ -25,6 +25,7 @@ const App = () =>{
             <Route path='/login' component={LogIn}></Route>
             <Route path='/admin' component={Admin}></Route>
             <Route path='/objeto/:id' component={Objeto}></Route>
+            <Route path='/prueba' ></Route>
           </Switch>
         </main> 
       </Router>

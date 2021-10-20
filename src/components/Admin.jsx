@@ -159,7 +159,7 @@ const Admin = () => {
                 condicion: condicion,
                 precioPesos: precioARS,
                 precioUSD: precioUS,
-                tasacionPesos: tasacionARS,
+                tasacionPesos: tasacionARS, 
                 tasacionUSD: tasacionUS,
                 descripcion: descripcion,
                 arrayFiles: arrayFiles,

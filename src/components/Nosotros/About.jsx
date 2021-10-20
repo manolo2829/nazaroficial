@@ -1,5 +1,6 @@
 import React from "react";
 import "./About.css";
+import Liliana from '../img/liliana.jfif'
 
 const About = () => {
   return (
@@ -16,7 +17,7 @@ const About = () => {
       </div>
       <div className="about-img">
         <img
-          src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg"
+          src={Liliana}
           alt="about"
         />
       </div>

@@ -1,6 +1,6 @@
 .about-container {
     display: flex;
-    background-color: #EDE9E7;
+    background-color: #ffffff;
     color: black;
     height: 70vh;
     padding: 100px 0 100px 0;
@@ -36,6 +36,7 @@
     width: 45%;
     display: flex;
     align-self: center;
+    justify-content: end;
     overflow: hidden;
     
 }
