@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-info">
-        <h1>NAZAR propiedades</h1>
+        <h1>NAZAR <b className='footer-detalle'>propiedades</b></h1>
         <p>______________</p>
       </div>
       <div className="footer-contact">
@@ -23,7 +23,7 @@ const Footer = () => {
           </a>
           <a href="https://facebook.com" target="_blank" rel="noreferrer">
           <i className="fab fa-whatsapp iconsSocial"></i>
-          </a>
+          </a> 
         </div>
       </div>
     </footer>

@@ -8,6 +8,7 @@ import user from './img/nazarvende.jfif'
 import Descripcion from './Objeto/Descripcion'
 import { useHistory } from 'react-router'
 import logo from './img/logocompleto.jfif'
+import Consulta from './Objeto/Consulta'
 
 const Objeto = () => {
 
@@ -162,13 +163,15 @@ const Objeto = () => {
                     <div>
                         <Descripcion></Descripcion>
                     </div>
+
+                    <Consulta></Consulta>
                 </div>
                <div className='objeto-user'>
                    <img src={logo} alt="" />
                    <div className='objeto-user-info'>
                        <div className='objeto-user-data'>
                            <div>
-                               <p>Matriculada:</p>
+                               <p>Titular:</p>
                                <p>Liliana Nazar</p>
                            </div>
                            <div>

@@ -16,6 +16,11 @@
     width: 70%;
     margin: 0 auto;
 }
+
+.footer-detalle{
+    color: rgb(187, 0, 0);
+    font-weight: 500;
+}
   
 .footer-info > h1 {
     padding-bottom: 15px;

@@ -8,6 +8,12 @@ import { Link } from 'react-router-dom'
 import Logo from '../img/loguitosf.png'
 import Insignia from '../img/logona.png'
 
+//iconos
+import iconoM2 from '../img/iconom2.png'
+import iconoCochera from '../img/iconoauto.png'
+import iconoHabitaciones from '../img/iconohabitaciones.png'
+import iconoBaño from '../img/iconobaño.png' 
+
 
 const Busqueda = () => {
 
@@ -129,15 +135,34 @@ const Busqueda = () => {
                                 if (search === ''){
                                     return val;
                                 } else if (
-                                    val.titulo.toLowerCase().includes(search.toLocaleLowerCase()) ||
-                                    val.condicion.toLowerCase().includes(search.toLocaleLowerCase()) ||
-                                    val.tipo.toLowerCase().includes(search.toLocaleLowerCase()) 
+                                    val.titulo.includes(search) ||
+                                    val.condicion.includes(search) ||
+                                    val.tipo.includes(search) 
                                 ){
                                     return val
-                                }
+                                } 
                             }).map( item => 
                                 <Link className='busqueda-link' to={`/objeto/${item.id}`} key={item.id}>
                                     <div className="card" >
+                                        <div className='card-icono-container'>
+                                            <div className='card-icono'>
+                                                <div className='card-form-icono'></div>
+                                                <div>
+                                                    <img src={iconoM2} alt="" />
+                                                    <img src={iconoCochera} alt="" />
+                                                    <img src={iconoHabitaciones} alt="" />
+                                                    <img src={iconoBaño} alt="" />
+                                                </div>
+                                                <div>
+                                                    <p>{item.area}</p>
+                                                    <p>{item.cochera}</p>
+                                                    <p>{item.habitaciones}</p>
+                                                    <p>{item.baños}</p>
+                                                </div>
+                                            
+                                            </div>
+                                        </div>
+                                        
                                         <img src={Insignia} className='card-img-logo' alt="" />
                                         <img src={item.arrayFiles[0]} className="card-img-top" alt="..." style={{ height: '60%' }}/>
                                         <div className="card-body">

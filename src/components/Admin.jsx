@@ -169,7 +169,7 @@ const Admin = () => {
                 area: area,
                 calefaccion: calefaccion,
                 mascota: mascota,
-                titulo: `${domicilio}, ${zona}, ${localidad}`
+                titulo: `${domicilio} ${barrio} ${zona} ${localidad}`
 
             })
         }catch(e){

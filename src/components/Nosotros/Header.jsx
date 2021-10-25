@@ -1,6 +1,5 @@
 import React from "react";
 import "./Header.css";
-import coverVideo from "./coverVideo.mp4";
 import house from './house.mp4'
 
 const Header = () => {

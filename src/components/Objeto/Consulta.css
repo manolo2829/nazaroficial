@@ -1,0 +1,13 @@
+
+.consulta{
+    background-color: #fff;
+}
+
+.consulta h6{
+    color: rgb(187, 0, 0);
+    font-weight: 600;
+    font-size: 25px;
+    padding: 5px 0;
+    margin: 0 5px;
+    border-bottom: 2px solid rgb(187, 0, 0);
+}
