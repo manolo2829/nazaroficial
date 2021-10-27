@@ -144,9 +144,9 @@ const Busqueda = () => {
                             }).map( item => 
                                 <Link className='busqueda-link' to={`/objeto/${item.id}`} key={item.id}>
                                     <div className="card" >
+                                        
                                         <div className='card-icono-container'>
                                             <div className='card-icono'>
-                                                <div className='card-form-icono'></div>
                                                 <div>
                                                     <img src={iconoM2} alt="" />
                                                     <img src={iconoCochera} alt="" />
@@ -178,6 +178,7 @@ const Busqueda = () => {
                         }
                         
                     </div> 
+
                 </div>             
             </div>
         </div>
