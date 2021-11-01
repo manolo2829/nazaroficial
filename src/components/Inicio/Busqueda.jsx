@@ -118,7 +118,7 @@ const Busqueda = () => {
             </div>
             <div style={{ background: '#EDE9E7'}} className='cards-container'>
                 <div className='cards-header'>
-                    <img src={Logo} alt="" />
+                    <img src={Logo} alt="" /> 
                     <p>Inmuebles</p>
                 </div>
                 

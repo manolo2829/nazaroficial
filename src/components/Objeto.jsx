@@ -117,7 +117,7 @@ const Objeto = () => {
             <div className='objeto-main'>
                 <div className='objeto-container'>
                     <div className='objeto-slider'>
-                        <Slider></Slider>
+                        <Slider></Slider> 
                     </div>
                     <div className='objeto-info'>
                         <h5>Informacion de la propiedad</h5>

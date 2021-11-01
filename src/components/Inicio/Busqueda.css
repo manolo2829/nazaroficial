@@ -7,7 +7,12 @@
     align-items: center;
     background-color: #ede9e770;
     flex-direction: column;
-    text-align: center;
+    text-align: center; 
+
+}
+
+.busqueda-container img{
+    opacity: .6;
 }
 
 .busqueda-header h1{

@@ -8,7 +8,7 @@ const Modal = ({children, estado, cambiarEstado}) => {
                 <Overlay>
                     <ContenedorModal>
                         <EncabezadoModal>
-                            <h3>Titulo</h3>
+                            <h3>Nazar Propiedades</h3>
                         </EncabezadoModal>
 
                         <BotonCerrar onClick={ () => {cambiarEstado(false)}}>
@@ -37,10 +37,10 @@ const Overlay = styled.div`
     left: 0;
     background: rgba(0,0,0,.5);
     padding: 40px;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index:100;
 `;
 
 const ContenedorModal = styled.div`
@@ -51,7 +51,6 @@ const ContenedorModal = styled.div`
     border-radius: 5px;
     box-shadow: rgba(100,100,111, 0.2) 0px 7px 29px 0px;
     padding: 20px;
-    z-index: 1;
 `;
 
 const EncabezadoModal = styled.div`
@@ -65,7 +64,7 @@ const EncabezadoModal = styled.div`
     h3{
         font-weight: 500;
         font-size: 16px;
-        color: #1766DC;
+        color: rgb(187,0,0);
     }
 `;
 
@@ -73,6 +72,7 @@ const BotonCerrar = styled.button`
     position: absolute;
     top: 20px;
     right: 20px;
+    z-index:5;
 
     width: 30px;
     height: 30px;
@@ -85,6 +85,7 @@ const BotonCerrar = styled.button`
 
     &:hover{
         background: #f2f2f2;
+        
     }
 
     svg {

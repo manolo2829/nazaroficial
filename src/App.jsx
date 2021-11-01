@@ -1,5 +1,6 @@
 import React from "react";
 import Inicio from "./components/Inicio";
+import './App.css'
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,7 +10,6 @@ import Nosotros from "./components/Nosotros";
 import Menu from "./components/Menu";
 import LogIn from "./components/LogIn";
 import Admin from "./components/Admin";
-import Mapa from "./components/Admin/Mapa";
 import Objeto from "./components/Objeto";
 
 

@@ -4,11 +4,13 @@
     background-color: black;
     color: #EDE9E7;
     padding-top: 180px;
-    position: fixed;
+    position: sticky;
     z-index: -2;
     bottom: 0;
     left: 0;
 }
+
+
   
 .footer-info {
     font-size: 35px;
